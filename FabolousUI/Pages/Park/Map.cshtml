@@ -1,0 +1,118 @@
+﻿@page
+@model FabolousUI.Pages.Park.MapModel
+@using Newtonsoft.Json;
+
+<h1>Map Page</h1>
+
+
+<hr />
+<br />
+<br />
+<table class="table table-bordered table-striped" style="width:50%">
+    <thead>
+        <tr>
+            <th>Empty</th>
+            <th>Half Full</th>
+            <th>Full</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <a asp-page="#"  class="btn btn-info"></a> 
+            </td>
+            <td>
+                  <a asp-page="#"  class="btn btn-primary"></a> 
+            </td>
+            <td>
+                 <a asp-page="#"  class="btn btn-danger"></a> 
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<br />
+<br />
+
+@{
+    var numberOfColsNeeded = 5;
+    var totalCounter = Model.Garage.spots.Count();
+    var itemCounter = 1;
+}
+    @{var parkingSpotCounter = 1;}
+
+    @{
+        
+         foreach (var value in  Model.Garage.spots)
+{
+         if (itemCounter % numberOfColsNeeded == 1)
+        {
+        @:<div class="row" >
+        <br />
+    }
+
+   
+    if(value.CurrentSize == 0)
+    {
+    <div class="col-lg-2 col-md-4 col-sm-6 pb-3">
+        <div class="gridBox" data-id="">
+            <div class="logo">
+                    <a asp-page="Edit" asp-route-id="@value.Id" class="btn btn-info">@value.Id </a> 
+            </div>
+        </div>
+        </div>
+    }
+    
+    else if(value.CurrentSize > 0 && value.CurrentSize < value.Size )
+    {
+        <div class="col-lg-2 col-md-4 col-sm-6 pb-3">
+        <div class="gridBox" data-id="">
+            <div class="logo">
+                    <a asp-page="Edit" asp-route-id="@value.Id" class="btn btn-primary">@value.Id </a> 
+            </div>
+        </div>
+        </div>
+    }
+
+    else if(value.CurrentSize == value.Size)
+    {
+        <div class="col-lg-2 col-md-4 col-sm-6 pb-3">
+        <div class="gridBox" data-id="">
+            <div class="logo">
+                    <a asp-page="Edit" asp-route-id="@value.Id" class="btn btn-danger">@value.Id </a> 
+            </div>
+        </div>
+        </div>
+    }
+
+    parkingSpotCounter++;
+
+    if ((itemCounter % numberOfColsNeeded == 0) || ((itemCounter) == totalCounter))
+    {
+        @:</div>
+    }
+    itemCounter++;
+
+}
+
+}
+
+<paging 
+    page-no="Model.P"
+    page-size="Model.S"
+    total-records="Model.TotalRecords"
+    show-total-pages="true"
+    show-total-records= "true"
+    show-page-size-nav="false"
+    text-total-pages="Pages"
+    text-total-records="Records"
+    class-total-pages="badge badge-pill btn btn-danger btn-sm"
+    class-total-records="badge badge-pill btn btn-dark btn-sm"
+
+>
+</paging>
+
+<br />
+<br />
+<br />
+<br />

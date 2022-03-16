@@ -1,0 +1,277 @@
+[
+  {
+    "Id": 1,
+    "Size": 4,
+    "Registration": "GBD5472",
+    "Parkingspot": 1,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 2,
+    "Size": 4,
+    "Registration": "7ZEE285",
+    "Parkingspot": 2,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 3,
+    "Size": 4,
+    "Registration": "T5540N",
+    "Parkingspot": 3,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 4,
+    "Size": 4,
+    "Registration": "LKY3494",
+    "Parkingspot": 4,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 5,
+    "Size": 4,
+    "Registration": "FXZ6807",
+    "Parkingspot": 5,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 6,
+    "Size": 4,
+    "Registration": "8236TE",
+    "Parkingspot": 6,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 7,
+    "Size": 4,
+    "Registration": "630XDK",
+    "Parkingspot": 7,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 8,
+    "Size": 4,
+    "Registration": "LOVE",
+    "Parkingspot": 8,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 9,
+    "Size": 4,
+    "Registration": "8739698",
+    "Parkingspot": 9,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 10,
+    "Size": 4,
+    "Registration": "KK9915",
+    "Parkingspot": 10,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 11,
+    "Size": 4,
+    "Registration": "BENCH",
+    "Parkingspot": 11,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 12,
+    "Size": 4,
+    "Registration": "HYB4966",
+    "Parkingspot": 12,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 13,
+    "Size": 4,
+    "Registration": "7K44135",
+
+    "Parkingspot": 13,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 14,
+    "Size": 4,
+    "Registration": "HTM4861",
+
+    "Parkingspot": 14,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 15,
+    "Size": 4,
+    "Registration": "5WAS727",
+    "Parkingspot": 15,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 16,
+    "Size": 4,
+    "Registration": "1076952",
+    "Parkingspot": 16,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 17,
+    "Size": 4,
+    "Registration": "QFX241",
+    "Parkingspot": 17,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 18,
+    "Size": 4,
+    "Registration": "7Z50T2",
+    "Parkingspot": 18,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 19,
+    "Size": 4,
+    "Registration": "6LME062",
+    "Parkingspot": 19,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 20,
+    "Size": 4,
+    "Registration": "7UFH698",
+    "Parkingspot": 20,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 21,
+    "Size": 4,
+    "Registration": "EUG190",
+    "Parkingspot": 21,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 22,
+    "Size": 4,
+    "Registration": "X35FNH",
+    "Parkingspot": 22,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 23,
+    "Size": 4,
+    "Registration": "KQVR90",
+    "Parkingspot": 23,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 24,
+    "Size": 4,
+    "Registration": "8EYV287",
+    "Parkingspot": 24,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 25,
+    "Size": 4,
+    "Registration": "6855OP",
+    "Parkingspot": 25,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 26,
+    "Size": 4,
+    "Registration": "7AAA642",
+    "Parkingspot": 26,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 27,
+    "Size": 4,
+    "Registration": "7YBK462",
+    "Parkingspot": 27,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 28,
+    "Size": 4,
+    "Registration": "8DGP853",
+    "Parkingspot": 28,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 29,
+    "Size": 4,
+    "Registration": "SC20365",
+    "Parkingspot": 29,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 30,
+    "Size": 4,
+    "Registration": "BCF9407",
+    "Parkingspot": 30,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 31,
+    "Size": 4,
+    "Registration": "CKH7844",
+    "Parkingspot": 31,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 32,
+    "Size": 4,
+    "Registration": "BB9487",
+    "Parkingspot": 32,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 33,
+    "Size": 4,
+    "Registration": "487TBS",
+    "Parkingspot": 33,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 34,
+    "Size": 4,
+    "Registration": "SC20337",
+    "Parkingspot": 34,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 35,
+    "Size": 4,
+    "Registration": "L4802T",
+    "Parkingspot": 35,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 36,
+    "Size": 4,
+    "Registration": "BWN8988",
+    "Parkingspot": 36,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 37,
+    "Size": 4,
+    "Registration": "DRG4N6",
+    "Parkingspot": 37,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 38,
+    "Size": 4,
+    "Registration": "0AGVG0",
+    "Parkingspot": 38,
+    "StartTime": "2012-02-13 00:00:00.000"
+  },
+  {
+    "Id": 39,
+    "Size": 4,
+    "Registration": "DKVQ31",
+    "Parkingspot": 39,
+    "StartTime": "2012-02-13 00:00:00.000"
+  }
+]

@@ -1,0 +1,54 @@
+﻿@page
+@model FabolousUI.Pages.Settings.IndexModel
+
+
+
+
+<div class="row">
+
+    <div class="col-6">
+       
+        <form method="post">
+
+    <div class="row pb-2">
+        <h2 class="text-primary pl-3">Settings Page</h2>
+        <hr />
+    </div>
+            
+            <div class="border p-3 mt-4 ms-4 col-6">
+                <select name="Field">
+                    <option value="">Select Field</option>
+                    <option value="Car">Car</option>
+                    <option value="Motorcycle">Motorcycle</option>                    
+                    <option value="Parkinggarage">Parking Garage</option>
+                </select>
+
+                <label asp-for="@Model.Property"class="form-label">Property</label>
+                <select name="Property">
+                    <option value="">Select Field</option>
+                    <option value="Size">Size</option>
+                    <option value="Cost">Cost</option>                         
+                </select>
+              
+              <label asp-for="@Model.Value"class="form-label">Value</label>
+                <input asp-for="@Model.Value" class="form-control" />               
+            </div>                        
+            
+            <div class="ms-4 pt-4">
+                <button type="submit" class="btn btn-primary" >Change</Button>
+                <a asp-Page="../Index" class="btn btn-danger ms-2">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-6 mt-5">
+        <div class="row">
+            <div class="col-6">
+                <label for="textArea" class="form-label">Configuration File:</label>
+                <textarea readonly name="kvitto" rows=18 cols=25 class="pe-3">
+                @Model.ConfigText
+        </textarea>
+            </div>
+        </div>
+    </div>
+</div>

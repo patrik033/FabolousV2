@@ -1,0 +1,16 @@
+{
+  "Car": {
+    "Size": 4,
+    "Cost": 20
+  },
+  "Motorcycle": {
+    "Size": 2,
+    "Cost": 10
+  },
+  "Parkingspot": {
+    "Size": 4
+  },
+  "Parkinggarage": {
+    "Size": 100
+  }
+}

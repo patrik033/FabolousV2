@@ -1,5 +1,6 @@
 ﻿@page
 @using BussinessLogicLibrary
+@using BussinessLogicLibrary.Models
 @using Newtonsoft.Json
 @model FabolousUI.Pages.Park.EditModel
 @{
@@ -76,6 +77,23 @@
                             @if (secondLine.GetType() == typeof(Car))
                             {
 
+                                <a asp-page="../EditTypes/EditCar" asp-route-id="@secondLine.Id" class="btn btn-primary mx-2">
+                                    Edit
+                                    <i class="bi-pencil-square"></i>
+                                </a>
+                                <a asp-page="../Checkout/CheckoutCar" asp-route-id="@secondLine.Id" class="btn btn-danger mx-2">
+                                    Delete
+                                    <i class="bi-trash-fill"></i>
+                                </a>
+                                Dictionary<string, string> dv = new Dictionary<string, string> { { "Car", JsonConvert.SerializeObject(secondLine) } };
+                                <a asp-page="ReroutIndex" asp-all-route-data="dv" class="btn btn-secondary mx-2">
+                                    Move
+                                    <i class="bi bi-minecart-loaded"></i>
+                                </a>
+                            }
+                            @if (secondLine.GetType() == typeof(Bus))
+                            {
+                                
                                 <a asp-page="../EditTypes/EditCar" asp-route-id="@secondLine.Id" class="btn btn-primary mx-2">
                                     Edit
                                     <i class="bi-pencil-square"></i>

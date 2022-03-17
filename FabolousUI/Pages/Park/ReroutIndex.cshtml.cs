@@ -1,6 +1,7 @@
 using BussinessLogicLibrary;
 using BussinessLogicLibrary.Stuff;
 using DatabaseAccessLibrary;
+using DatabaseAccessLibrary.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
@@ -10,6 +11,8 @@ namespace FabolousUI.Pages.Park
     [BindProperties]
     public class ReroutIndexModel : PageModel
     {
+
+        private readonly IUnitOfWork _contextUnitOfWork;
         private readonly FabolousDbContext _context;
         [BindProperty(SupportsGet = true)]
         public dynamic MyVehicle { get; set; }
@@ -28,10 +31,10 @@ namespace FabolousUI.Pages.Park
         public GarageFunctions GarageFunctions;
         public JsonEditor jsonEditor = new JsonEditor();
 
-        public ReroutIndexModel(FabolousDbContext context)
+        public ReroutIndexModel(IUnitOfWork contextUnitOfWork)
         {
-            _context = context;
-            GarageFunctions = new GarageFunctions(_context);
+            _contextUnitOfWork = contextUnitOfWork;
+            GarageFunctions = new GarageFunctions(_contextUnitOfWork);
         }
         public IActionResult OnGet(Dictionary<string, string> passedObject)
         {

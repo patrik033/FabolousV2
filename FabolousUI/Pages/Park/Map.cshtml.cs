@@ -1,6 +1,7 @@
 using BussinessLogicLibrary;
 using BussinessLogicLibrary.Stuff;
 using DatabaseAccessLibrary;
+using DatabaseAccessLibrary.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -11,6 +12,7 @@ namespace FabolousUI.Pages.Park
     {
         private readonly FabolousDbContext _context;
         public IList<Parkingspot> Cars { get; set; }
+        private readonly IUnitOfWork _contextUnitOfWork;
 
         //page number variable
         [BindProperty(SupportsGet = true)]
@@ -27,11 +29,11 @@ namespace FabolousUI.Pages.Park
         public GarageFunctions GarageFunctions;
         public JsonEditor jsonEditor = new JsonEditor();
 
-        public MapModel(FabolousDbContext context)
+        public MapModel(IUnitOfWork contextUnitOfWork)
         {
+            _contextUnitOfWork = contextUnitOfWork;
             S = int.Parse(jsonEditor.ReadProperty("Parkinggarage", "Size"));
-            _context = context;
-            GarageFunctions = new GarageFunctions(_context);
+            GarageFunctions = new GarageFunctions(_contextUnitOfWork);
         }
 
         public IActionResult OnGet()

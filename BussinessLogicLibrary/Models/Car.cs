@@ -15,6 +15,7 @@ namespace BussinessLogicLibrary
         //public string Type { get; set; } = "Car";
 
         [Required(ErrorMessage = "Please provide a registration number")]
+        //[\d\p{L}-]+
         [RegularExpression(@"[\d\w\s-]+",ErrorMessage = "Please use only letter, numbers, dash or space")]
         [StringLength(maximumLength: 8)]
         public override string Registration { get; set; }

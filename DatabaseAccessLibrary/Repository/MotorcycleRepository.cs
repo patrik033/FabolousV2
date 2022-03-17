@@ -24,7 +24,7 @@ namespace DatabaseAccessLibrary.Repository
 
         public void Update(Motorcycle motorcycle)
         {
-            var myObject = _context.cars.FirstOrDefault(x => x.Id == motorcycle.Id);
+            var myObject = _context.motorcycles.FirstOrDefault(x => x.Id == motorcycle.Id);
             if (myObject != null)
             {
                 myObject.Registration = motorcycle.Registration;

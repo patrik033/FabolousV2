@@ -34,7 +34,7 @@
                     </a>
                 }
                 Dictionary<string, string> newSpotsForBuses = new Dictionary<string, string> { { "currentSpots", @Model.Spots } };
-                if (@Model.Bus == true)
+                if (@Model.Bus == true && line.Id <= 50)
                 {
 
                     <a asp-page="CreateBus" asp-all-route-data="newSpotsForBuses" asp-route-id="@line.Id" class="btn btn-outline-info ms-3">
@@ -94,7 +94,7 @@
                             @if (secondLine.GetType() == typeof(Bus))
                             {
                                 
-                                <a asp-page="../EditTypes/EditCar" asp-route-id="@secondLine.Id" class="btn btn-primary mx-2">
+                                <a asp-page="../EditTypes/EditBus" asp-route-id="@secondLine.Id" class="btn btn-primary mx-2">
                                     Edit
                                     <i class="bi-pencil-square"></i>
                                 </a>

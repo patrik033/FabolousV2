@@ -13,7 +13,6 @@ namespace FabolousUI.Pages.Park
     {
 
         private readonly IUnitOfWork _contextUnitOfWork;
-        private readonly FabolousDbContext _context;
         [BindProperty(SupportsGet = true)]
         public dynamic MyVehicle { get; set; }
 

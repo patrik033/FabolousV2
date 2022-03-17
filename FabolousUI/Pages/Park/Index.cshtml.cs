@@ -1,6 +1,7 @@
 using BussinessLogicLibrary;
 using BussinessLogicLibrary.Stuff;
 using DatabaseAccessLibrary;
+using DatabaseAccessLibrary.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
@@ -11,6 +12,7 @@ namespace FabolousUI.Pages.Park
     public class IndexModel : PageModel
     {
         private readonly FabolousDbContext _context;
+        private readonly IUnitOfWork _contextUnitOfWork;
         public IList<Parkingspot> Cars { get; set; }
 
         //page number variable
@@ -29,10 +31,10 @@ namespace FabolousUI.Pages.Park
         public GarageFunctions GarageFunctions;
         public JsonEditor jsonEditor = new JsonEditor();
 
-        public IndexModel(FabolousDbContext context)
+        public IndexModel(IUnitOfWork contextUnitOfWork)
         {
-            _context = context;
-            GarageFunctions = new GarageFunctions(_context);
+            _contextUnitOfWork = contextUnitOfWork;
+            GarageFunctions = new GarageFunctions(_contextUnitOfWork);
         }
 
         public IActionResult OnGet()

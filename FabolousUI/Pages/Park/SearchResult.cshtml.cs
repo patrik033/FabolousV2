@@ -2,6 +2,7 @@ using BussinessLogicLibrary;
 using BussinessLogicLibrary.Models;
 using BussinessLogicLibrary.Stuff;
 using DatabaseAccessLibrary;
+using DatabaseAccessLibrary.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -12,6 +13,7 @@ namespace FabolousUI.Pages.Park
     [BindProperties]
     public class SearchResult : PageModel
     {
+        private readonly IUnitOfWork _contextUnitOfWork;
         private readonly FabolousDbContext _context;
 
         [BindProperty(SupportsGet = true)]
@@ -22,15 +24,24 @@ namespace FabolousUI.Pages.Park
         public GarageFunctions GarageFunctions;
         public List<Vehicle> Vehicles = new List<Vehicle>();
 
+        public SearchResult(IUnitOfWork contextUnitOfWork)
+        {
+            _contextUnitOfWork = contextUnitOfWork;
+            GarageFunctions = new GarageFunctions(_contextUnitOfWork);
+        }
+       
+
         public List<Vehicle> SearchForVehicles()
         {
             List<Vehicle> vehicles = new List<Vehicle>();
 
-            foreach (var vehicle in _context.cars.Where(x => x.Registration.Contains(Search)))
+            var fada = _contextUnitOfWork.Car.GetAll(x => x.Registration.Contains(Search));
+
+            foreach (var vehicle in _contextUnitOfWork.Car.GetAll(x => x.Registration.Contains(Search)))
             {
                 vehicles.Add((Vehicle)vehicle);
             }
-            foreach (var vehicle in _context.motorcycles.Where(x => x.Registration.Contains(Search)))
+            foreach (var vehicle in _contextUnitOfWork.Motorcycle.GetAll(x => x.Registration.Contains(Search)))
             {
                 vehicles.Add((Vehicle)vehicle);
             }
@@ -38,11 +49,6 @@ namespace FabolousUI.Pages.Park
         }
 
 
-        public SearchResult(FabolousDbContext context)
-        {
-            _context = context;
-            GarageFunctions = new GarageFunctions(_context);
-        }
 
         public void OnGet()
         {

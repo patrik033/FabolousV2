@@ -1,6 +1,7 @@
 using BussinessLogicLibrary;
 using BussinessLogicLibrary.Stuff;
 using DatabaseAccessLibrary;
+using DatabaseAccessLibrary.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -8,7 +9,7 @@ namespace FabolousUI.Pages.Checkout
 {
     public class IndexModel : PageModel
     {
-        private readonly FabolousDbContext _context;
+        private readonly IUnitOfWork _contextUnitOfWork;
         public Car MyCar { get; set; } = new Car();
 
         public string FormatedTime { get; set; }
@@ -20,18 +21,17 @@ namespace FabolousUI.Pages.Checkout
         public string FormatedCost { get; set; }
         public string TextString { get; set; }
 
-        public IndexModel(FabolousDbContext context)
+        public IndexModel(IUnitOfWork contextUnitOfWork)
         {
+            _contextUnitOfWork = contextUnitOfWork;
             ParkedTime = new TimeSpan();
-            _context = context;
             CostCalculator = new CostCalculation();
             Editor = new JsonEditor();
         }
 
         public void OnGet(int id)
         {
-            MyCar = _context.cars.FirstOrDefault(c => c.Id == id);
-
+            MyCar = _contextUnitOfWork.Car.GetFirstOrDefault(x => x.Id == id);
             Cost = Editor.ReadProperty("Car", "Cost");
             ParkedTime = CostCalculator.ParkedTime(MyCar.StartTime);
             FormatedTime = CostCalculator.ParkedTimeToScreen(MyCar.StartTime);
@@ -43,12 +43,12 @@ namespace FabolousUI.Pages.Checkout
 
         public async Task<IActionResult> OnPostAsync(int id)
         {
-            var category = await _context.cars.FindAsync(id);
+            var category = _contextUnitOfWork.Car.GetFirstOrDefault( x => x.Id == id); 
             if (category != null)
             {
-                _context.cars.Remove(category);
-                await _context.SaveChangesAsync();
-                TempData["Success"] = "Vehicle deleted successfully";
+                _contextUnitOfWork.Car.Remove(category);
+                _contextUnitOfWork.Save();
+                TempData["Success"] = "Car deleted successfully";
                 return RedirectToPage("../Park/Index");
             }
             else

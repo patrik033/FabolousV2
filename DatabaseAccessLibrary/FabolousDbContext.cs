@@ -16,6 +16,7 @@ namespace DatabaseAccessLibrary
         public DbSet<Car> cars { get; set; } 
         public DbSet<Motorcycle> motorcycles { get; set; }
         public DbSet<Bus> busses { get; set; }
+        public DbSet<Bicycle> bicycles { get; set; }
         public FabolousDbContext(DbContextOptions<FabolousDbContext> options ) : base (options)
         {
             

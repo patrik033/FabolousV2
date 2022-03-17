@@ -10,14 +10,12 @@ namespace FabolousUI.Pages.Park
     [BindProperties]
     public class CreateModel : PageModel
     {
-        private readonly FabolousDbContext _context;
         private readonly IUnitOfWork _contextUnitOfWork;
         public Car MyCar { get; set; } = new Car();
         public int Id { get; set; }
 
-        public CreateModel(IUnitOfWork contextUnitOfWork,FabolousDbContext context)
+        public CreateModel(IUnitOfWork contextUnitOfWork)
         {
-            _context = context;
             _contextUnitOfWork = contextUnitOfWork;
         }
 
@@ -33,10 +31,9 @@ namespace FabolousUI.Pages.Park
                 //kollar efter dubletter
                 //TODO lägg till detta för alla typer
 
-                var fromCar = _context.cars.Where(x => x.Registration == MyCar.Registration).FirstOrDefault();
-                var fromMc = _context.motorcycles.Where(x => x.Registration == MyCar.Registration).FirstOrDefault();
-                
-                if (fromCar == null && fromMc == null)
+                var fromNewCar = _contextUnitOfWork.Car.GetFirstOrDefault(x => x.Registration == MyCar.Registration);
+                var fromNewMc = _contextUnitOfWork.Motorcycle.GetFirstOrDefault(x => x.Registration == MyCar.Registration);
+                if (fromNewCar == null && fromNewMc == null)
                 {
                     MyCar.Registration = MyCar.Registration.ToUpper();
                     _contextUnitOfWork.Car.Add(MyCar);

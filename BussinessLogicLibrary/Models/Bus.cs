@@ -9,6 +9,7 @@ namespace BussinessLogicLibrary.Models
 {
     public class Bus : Vehicle
     {
+        
         [Key]
         public override int Id { get; set; }
         public int Size { get; set; } = 16;

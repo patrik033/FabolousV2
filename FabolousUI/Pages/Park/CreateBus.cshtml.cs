@@ -37,10 +37,11 @@ namespace FabolousUI.Pages.Park
             var registration11 = Request.Form["registration"];    
             Spots = currentSpots.Split(',').ToList();
             Spots.RemoveAt(4);
-            int a = 0;  
+           
             
                 foreach (var item in Spots)
                 {
+                    MyBus = new Bus();
                     MyBus.Registration = registration11;
                     MyBus.Parkingspot = int.Parse(item);
                     await _context.busses.AddAsync(MyBus);

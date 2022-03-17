@@ -1,5 +1,7 @@
 using BussinessLogicLibrary;
 using DatabaseAccessLibrary;
+using DatabaseAccessLibrary.Repository;
+using DatabaseAccessLibrary.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -19,6 +21,8 @@ namespace FabolousUI
             builder.Services.AddDbContext<FabolousDbContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+            //add repository pattern
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             var app = builder.Build();
 

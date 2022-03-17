@@ -1,4 +1,4 @@
-﻿using BussinessLogicLibrary;
+﻿using BussinessLogicLibrary.Models;
 using DatabaseAccessLibrary.Repository.IRepository;
 using System;
 using System.Collections.Generic;
@@ -8,10 +8,12 @@ using System.Threading.Tasks;
 
 namespace DatabaseAccessLibrary.Repository
 {
-    public class CarRepository : Repository<Car>,ICarRepository
+
+
+    public class BicycleRepository : Repository<Bicycle>, IBicycleRepository
     {
         private readonly FabolousDbContext _context;
-        public CarRepository(FabolousDbContext context) :base(context)
+        public BicycleRepository(FabolousDbContext context) : base(context)
         {
             _context = context;
         }
@@ -21,12 +23,12 @@ namespace DatabaseAccessLibrary.Repository
             _context.SaveChanges();
         }
 
-        public void Update(Car car)
+        public void Update(Bicycle bicycle)
         {
-            var myObject = _context.cars.FirstOrDefault(x => x.Id == car.Id);
+            var myObject = _context.bicycles.FirstOrDefault(x => x.Id == bicycle.Id);
             if (myObject != null)
             {
-                myObject.Registration = car.Registration;
+                myObject.Registration = bicycle.Registration;
             }
         }
     }

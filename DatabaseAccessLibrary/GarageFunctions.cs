@@ -11,7 +11,7 @@ namespace DatabaseAccessLibrary
         public JsonEditor Editor { get; set; } = new JsonEditor();
         public GarageFunctions(IUnitOfWork contextUnitOfWork)
         {
-             _contextUnitOfWork = contextUnitOfWork;
+            _contextUnitOfWork = contextUnitOfWork;
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace DatabaseAccessLibrary
                 {
                     var number = spot.Id;
                     var selectedItem = _contextUnitOfWork.Car.GetFirstOrDefault(x => x.Parkingspot == number);
-                    
+
                     if (selectedItem != null && selectedItem.Size <= spot.Size - spot.CurrentSize)
                     {
                         spot.ParkedVehicles.Add(selectedItem);
@@ -70,7 +70,7 @@ namespace DatabaseAccessLibrary
                     var selectedItem = _contextUnitOfWork.Motorcycle.GetAll(x => x.Parkingspot == number).Take(2);
                     foreach (var vehicle in selectedItem)
                     {
-                        if (vehicle != null)
+                        if (vehicle != null && vehicle.Size <= spot.Size - spot.CurrentSize)
                         {
                             spot.ParkedVehicles.Add(vehicle);
                             spot.CurrentSize += 2;
@@ -78,22 +78,23 @@ namespace DatabaseAccessLibrary
                     }
                 }
             }
-            //foreach (var spot in parkingGarage.spots)
-            //{
-            //    if (spot.Size > spot.CurrentSize)
-            //    {
-            //        var number = spot.Id;
-            //        if (_context.busses.Where(car => car.Parkingspot == number).Any())
-            //        {
-            //            var selectedItem = _context.busses.Where(bus => bus.Parkingspot == number).FirstOrDefault();
-            //            if (selectedItem != null && selectedItem.Size > spot.Size - spot.CurrentSize)
-            //            {
-            //                spot.ParkedVehicles.Add(selectedItem);
-            //                spot.CurrentSize += 4;
-            //            }
-            //        }
-            //    }
-            //}
+            foreach (var spot in parkingGarage.spots)
+            {
+                if (spot.Size > spot.CurrentSize)
+                {
+                    var number = spot.Id;
+
+                    var selectedItem = _contextUnitOfWork.Bus.GetAll(bus => bus.Parkingspot == number).Take(4);
+                    foreach (var item in selectedItem)
+                    {
+                        if (item != null)
+                        {
+                            spot.ParkedVehicles.Add(item);
+                            spot.CurrentSize += 4;
+                        }
+                    }
+                }
+            }
             return parkingGarage;
         }
         public int GetHighestParkingSpot()

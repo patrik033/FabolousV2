@@ -88,7 +88,7 @@ namespace DatabaseAccessLibrary
                 if (spot.Size > spot.CurrentSize)
                 {
                     var number = spot.Id;
-                    if (_context.busses.Where(car => car.Parkingspot == number).Any())
+                    if (_contextUnitOfWork.busses.Where(car => car.Parkingspot == number).Any())
                     {
                         var selectedItem = _context.busses.Where(bus => bus.Parkingspot == number).FirstOrDefault();
                         if (selectedItem != null && selectedItem.Size > spot.Size - spot.CurrentSize)

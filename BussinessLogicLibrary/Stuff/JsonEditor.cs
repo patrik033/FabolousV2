@@ -23,7 +23,7 @@ namespace BussinessLogicLibrary.Stuff
 
             dynamic jsonObject = JsonConvert.DeserializeObject(json);
 
-            if (property.ToLower() == "car" || property.ToLower() == "motorcycle")
+            if (property.ToLower() == "car" || property.ToLower() == "motorcycle" || property.ToLower() == "bus")
             {
                 if (field.ToLower() == "size" || field.ToLower() == "cost")
                 {
@@ -61,7 +61,7 @@ namespace BussinessLogicLibrary.Stuff
             dynamic jsonObject = JsonConvert.DeserializeObject(json);
             if (value >= 0 && value < 2000000)
             {
-                if (property.ToLower() == "car" || property.ToLower() == "motorcycle")
+                if (property.ToLower() == "car" || property.ToLower() == "motorcycle" || property.ToLower() == "bus")
                 {
                     if (/*field.ToLower() == "size" || */field.ToLower() == "cost")
                     {

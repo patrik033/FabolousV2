@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
 
-namespace FabolousUIV2.Pages.Park
+namespace FabolousUI.Pages.Park
 {
     public class CreateBusModel : PageModel
     {
@@ -13,27 +13,35 @@ namespace FabolousUIV2.Pages.Park
         public List<string> Spots { get; set; }
         public int Id { get; set; }
         public string IncomingSpots { get; set; }
+        public string Registration { get; set; }    
+        
 
         public CreateBusModel(FabolousDbContext context)
         {
             _context = context;
         }
 
-        public void OnGet(string currentSpots)
+        public void OnGet(string currentSpots,string registration)
         {
             IncomingSpots = currentSpots;
+            Registration = registration;
+
 
         }
-        public async Task<IActionResult> OnPost(string currentSpots,string registration)
+        public async Task<IActionResult> OnPost(string currentSpots)
         {
-                //kollar efter dubletter
-                //var fromCar = _context.cars.Where(x => x.Registration == MyCar.Registration).FirstOrDefault();
-                //var fromMc = _context.motorcycles.Where(x => x.Registration == MyCar.Registration).FirstOrDefault();
-                MyBus.Registration = registration;
-                Spots = currentSpots.Split(',').ToList();
+            //kollar efter dubletter
+            //var fromCar = _context.cars.Where(x => x.Registration == MyCar.Registration).FirstOrDefault();
+            //var fromMc = _context.motorcycles.Where(x => x.Registration == MyCar.Registration).FirstOrDefault();
+            //MyBus.Registration = Registration;
+            var registration11 = Request.Form["registration"];    
+            Spots = currentSpots.Split(',').ToList();
+            Spots.RemoveAt(4);
+            int a = 0;  
+            
                 foreach (var item in Spots)
                 {
-                    MyBus.Registration = MyBus.Registration.ToUpper();
+                    MyBus.Registration = registration11;
                     MyBus.Parkingspot = int.Parse(item);
                     await _context.busses.AddAsync(MyBus);
                     await _context.SaveChangesAsync();

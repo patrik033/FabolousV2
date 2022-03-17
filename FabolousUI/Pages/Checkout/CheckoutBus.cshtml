@@ -1,0 +1,41 @@
+﻿@page
+@model FabolousUIV2.Pages.Checkout.CheckoutBusModel
+
+<div class="row pe-5">
+    <div class="col-6">
+        <form method="post" class="ps-5">
+            <input type="hidden" asp-for="@Model.MyBus.Registration" />
+            
+            <div class="border p-3 mt-4 ">
+                <div class="row pb-2">
+                    <h2 class="text-primary pl-3">Checkout Page</h2>
+                    <hr />
+                </div>
+
+                <div class="container-fluid col-10">
+
+                    <div class="mb-3">
+                        <label asp-for="@Model.MyBus.Registration" class="form-label">RegNr</label>
+                        
+                        <input asp-for="@Model.MyBus.Registration" type="text" name="registration" class="form-control" />
+                    </div>
+                    <button type="submit" class="btn btn-primary"  asp-route-id ="@Model.MyBus.Registration" style="width:150px;">CheckOut</button>
+                    <a asp-page="../Park/Index" class="btn btn-primary mx-2">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <div class="col-6 ps-5">
+        <div class=col-6>
+            <div class="row">
+
+                <label for="textArea" class="form-label pt-3"></label>
+                <textarea name="kvitto" rows=10 cols=25 readonly="readonly" class="pe-3">
+                    @Model.TextString
+        </textarea>
+            </div>
+        </div>
+    </div>
+</div>

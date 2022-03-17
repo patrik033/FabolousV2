@@ -15,12 +15,16 @@ namespace DatabaseAccessLibrary.Repository
             _context = context;
             Car = new CarRepository(_context);
             Motorcycle = new MotorcycleRepository(_context);
+            Bus = new BusRepository(_context);
+            Bicycle = new BicycleRepository(_context);
         }
 
         public ICarRepository Car { get;private set; }
         public IMotorcycleRepository Motorcycle { get;private set; }
+        public IBusRepository Bus { get;private set; }
+        public IBicycleRepository Bicycle { get;private set; }
 
-        
+
 
         public void Dispose()
         {

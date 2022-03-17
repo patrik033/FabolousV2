@@ -1,4 +1,5 @@
 using BussinessLogicLibrary;
+
 using BussinessLogicLibrary.Stuff;
 using DatabaseAccessLibrary;
 using Microsoft.AspNetCore.Mvc;
@@ -13,15 +14,15 @@ namespace FabolousUI.Pages.Park
         private readonly FabolousDbContext _context;
         public Car MyCar { get; set; } = new Car();
         public Motorcycle MyMc { get; set; } = new Motorcycle();
+        public Bus MyBus { get; set; } = new Bus();
         public string MyObject { get; set; }
-        public IEnumerable<Parkingspot> myNum;
+        public IEnumerable<Parkingspot> myNum;      
        
-        
         public ParkingGarage Garage;
 
         public GarageFunctions GarageFunctions;
         public int NewId { get; set; }
-        public string Spots { get; set; }
+        public string Spots { get; set; }  
         public bool Bus { get; set; }
 
         public EditModel(FabolousDbContext context)
@@ -35,39 +36,54 @@ namespace FabolousUI.Pages.Park
         {
             Garage = GarageFunctions.InstanciateGarage();
             Garage = GarageFunctions.GetParkedVehicles(Garage);
-            
             myNum = Garage.spots.Where(x => x.Id == id);
 
-            Bus = Test(id).Keys.FirstOrDefault();
-            NewId = Test(id).Values.FirstOrDefault();
-
+            var indexListWithParkinSpotsOfValueZero = Garage.spots.Select((x, index ) => new { x.CurrentSize, index  }).Where(x => x.CurrentSize == 0).Where(x => x.index <= 50).ToList();
+            List<int> positiveForBusParkingSlots = new List<int>();
+            positiveForBusParkingSlots.AddRange(indexListWithParkinSpotsOfValueZero.Select(x => x.index));
+            Bus = ValidateParkSequense(positiveForBusParkingSlots);          
             if (Bus == true)
             {
-                for (int i = 0; i < 4; i++)
+                var perfeCt = positiveForBusParkingSlots.Take(4).ToList();
+                foreach (var item in perfeCt)
                 {
-                    Spots += (NewId + i).ToString() + ",";
+                    Spots += item.ToString() + ',';
                 }
             }
-
         }
-        public Dictionary<bool, int> Test(int id)
+        bool ValidateParkSequense(List<int> positiveForBusParkingSlots)
         {
-            Dictionary<bool, int> result = new Dictionary<bool, int>();
-            int BussSpacesOccupied = 4;
+            var perfeCt = positiveForBusParkingSlots.Take(4).ToList();
+            int highest = perfeCt.Max();
+            int lowest = perfeCt.Min();
+            int j = 0;
+            int diff = highest - lowest;
 
-            for (int i = 0; i < BussSpacesOccupied; i++)
+            if (diff == 3)
             {
-                if (Garage.spots[id - 1 - i] != null && Garage.spots[id - 1 - i].CurrentSize == 0 && Garage.spots[id - i].CurrentSize == 0 && Garage.spots[id + 1 - i].CurrentSize == 0 && Garage.spots[id + 2 - i].CurrentSize == 0 && Garage.spots[id + 2 - i].Id <= 50)
-                {
-                    result.Add(true, id - i);
-                    return result;
-                }
-
+                return true;
             }
-            result.Add(false, -1);
-            return result;
+            while (positiveForBusParkingSlots.Count() > 3 && diff != 3)
+            {
+                positiveForBusParkingSlots.RemoveAt(j);
+                perfeCt = positiveForBusParkingSlots.Take(4).ToList();
+                highest = perfeCt.Max();
+                lowest = perfeCt.Min();
+                diff = highest - lowest;
+                for (int a = 0; a < perfeCt.Count() - 1; a++)
+                {
+                    if (diff == 3)
+                    {
+                        return true;
+                    }
+                    else if (diff != 3)
+                    {
+                        break;
+                    }
+                }
+            }
 
-
+            return false;
         }
     }
 }

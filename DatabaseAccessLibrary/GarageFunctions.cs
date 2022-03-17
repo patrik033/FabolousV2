@@ -88,6 +88,22 @@ namespace DatabaseAccessLibrary
                     }
                 }
             }
+            foreach (var spot in parkingGarage.spots)
+            {
+                if (spot.Size > spot.CurrentSize)
+                {
+                    var number = spot.Id;
+                    if (_context.busses.Where(car => car.Parkingspot == number).Any())
+                    {
+                        var selectedItem = _context.busses.Where(bus => bus.Parkingspot == number).FirstOrDefault();
+                        if (selectedItem != null && selectedItem.Size > spot.Size - spot.CurrentSize)
+                        {
+                            spot.ParkedVehicles.Add(selectedItem);
+                            spot.CurrentSize += 4;
+                        }
+                    }
+                }
+            }
             return parkingGarage;
         }
 

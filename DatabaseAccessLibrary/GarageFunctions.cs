@@ -83,7 +83,6 @@ namespace DatabaseAccessLibrary
                 if (spot.Size > spot.CurrentSize)
                 {
                     var number = spot.Id;
-
                     var selectedItem = _contextUnitOfWork.Bus.GetAll(bus => bus.Parkingspot == number).Take(4);
                     foreach (var item in selectedItem)
                     {

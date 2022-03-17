@@ -10,11 +10,9 @@ namespace FabolousUI.Pages.Park
     [BindProperties]
     public class EditModel : PageModel
     {
-
-
         private readonly IUnitOfWork _contextUnitOfWork;
         JsonEditor MyJsonEditor = new JsonEditor();
-        private readonly FabolousDbContext _context;
+
         public Car MyCar { get; set; } = new Car();
         public Motorcycle MyMc { get; set; } = new Motorcycle();
         public string MyObject { get; set; }
@@ -42,16 +40,16 @@ namespace FabolousUI.Pages.Park
             
             myNum = Garage.spots.Where(x => x.Id == id);
 
-            Bus = Test(id).Keys.FirstOrDefault();
-            NewId = Test(id).Values.FirstOrDefault();
+            //Bus = Test(id).Keys.FirstOrDefault();
+            //NewId = Test(id).Values.FirstOrDefault();
 
-            if (Bus == true)
-            {
-                for (int i = 0; i < 4; i++)
-                {
-                    Spots += (NewId + i).ToString() + ",";
-                }
-            }
+            //if (Bus == true)
+            //{
+            //    for (int i = 0; i < 4; i++)
+            //    {
+            //        Spots += (NewId + i).ToString() + ",";
+            //    }
+            //}
 
         }
         public Dictionary<bool, int> Test(int id)
@@ -61,17 +59,15 @@ namespace FabolousUI.Pages.Park
 
             for (int i = 0; i < BussSpacesOccupied; i++)
             {
-                if (Garage.spots[id - 1 - i] != null && Garage.spots[id - 1 - i].CurrentSize == 0 && Garage.spots[id - i].CurrentSize == 0 && Garage.spots[id + 1 - i].CurrentSize == 0 && Garage.spots[id + 2 - i].CurrentSize == 0 && Garage.spots[id + 2 - i].Id <= 50)
+                if (Garage.spots[id - 1 - i] != null && Garage.spots[id - 1 - i].CurrentSize == 0 && Garage.spots[id - i].CurrentSize == 0
+                    && Garage.spots[id + 1 - i].CurrentSize == 0 && Garage.spots[id + 2 - i].CurrentSize == 0 && Garage.spots[id + 2 - i].Id <= 50)
                 {
                     result.Add(true, id - i);
                     return result;
                 }
-
             }
             result.Add(false, -1);
             return result;
-
-
         }
     }
 }

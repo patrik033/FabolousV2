@@ -4,6 +4,7 @@ using DatabaseAccessLibrary;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatabaseAccessLibrary.Migrations
 {
     [DbContext(typeof(FabolousDbContext))]
-    partial class FabolousDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220317082550_businit")]
+    partial class businit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -361,33 +363,6 @@ namespace DatabaseAccessLibrary.Migrations
                             Size = 4,
                             StartTime = new DateTime(2012, 2, 13, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
-                });
-
-            modelBuilder.Entity("BussinessLogicLibrary.Models.Bus", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("Parkingspot")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Registration")
-                        .IsRequired()
-                        .HasMaxLength(8)
-                        .HasColumnType("nvarchar(8)");
-
-                    b.Property<int>("Size")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("StartTime")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("busses");
                 });
 
             modelBuilder.Entity("BussinessLogicLibrary.Motorcycle", b =>

@@ -1,0 +1,38 @@
+﻿@page
+@model FabolousUIV2.Pages.Park.CreateBusModel
+
+<form method="post">
+    <div class="border p-3 mt-4 col-8">
+        <input asp-for="@Model.MyBus.Size" type="hidden"/>
+        <input type="hidden" asp-for="@Model.MyBus.Id" />
+        <input type="hidden" asp-for="@Model.MyBus.Parkingspot" value="@Model.IncomingSpots" />
+        <input type="hidden" asp-for="@Model.MyBus.StartTime" value="@DateTime.Now" />
+        
+   
+        <div class="row pb-2">
+            <h2 class="text-primary pl-3">Create Car</h2>
+            <hr />
+        </div>
+        <div class="container col-8">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="mb-3">
+                <label asp-for="@Model.MyBus.Registration"></label>
+                <input asp-for="@Model.MyBus.Registration" type="text" class="form-control" />
+                <span asp-validation-for=@Model.MyBus.Registration class="text-danger"></span>
+               
+            </div>
+             @{
+                Dictionary<string, string> newSpotDict = new Dictionary<string, string> { { "currentSpots", @Model.IncomingSpots} };
+            }
+            <button type="submit" class="btn btn-primary" asp-all-route-data="newSpotDict"  style="width:150px;">Create</button>
+            
+            
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial"/>
+    }
+}

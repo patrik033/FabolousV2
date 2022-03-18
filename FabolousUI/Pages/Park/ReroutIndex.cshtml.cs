@@ -52,6 +52,13 @@ namespace FabolousUI.Pages.Park
                     MyVehicle = JsonConvert.DeserializeObject<Car>(passedObject.Where(x => x.Key == "Car").FirstOrDefault().Value);
                 }
             }
+            else if (passedObject.ContainsKey("Bicycle"))
+            {
+                if (passedObject.Where(x => x.Key == "Bicycle").FirstOrDefault().Key.Any() != null)
+                {
+                    MyVehicle = JsonConvert.DeserializeObject<Bicycle>(passedObject.Where(x => x.Key == "Bicycle").FirstOrDefault().Value);
+                }
+            }
             else
                 return RedirectToPage("../WrongParkingSpotCount");
 

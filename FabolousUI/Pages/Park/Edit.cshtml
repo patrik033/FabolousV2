@@ -137,11 +137,11 @@
                             }
                             @if (secondLine.GetType() == typeof(Bicycle))
                             {
-                                <a asp-page="../EditTypes/EditMotorcykle" asp-route-id="@secondLine.Id" class="btn btn-primary mx-2">
+                                <a asp-page="../EditTypes/EditBicycle" asp-route-id="@secondLine.Id" class="btn btn-primary mx-2">
                                     Edit
                                     <i class="bi-pencil-square"></i>
                                 </a>
-                                <a asp-page="../Checkout/CheckoutMotorcykle" asp-route-id="@secondLine.Id" class="btn btn-danger mx-2">
+                                <a asp-page="../Checkout/CheckoutBicycle" asp-route-id="@secondLine.Id" class="btn btn-danger mx-2">
                                     Delete
                                     <i class="bi-trash-fill"></i>
                                 </a>

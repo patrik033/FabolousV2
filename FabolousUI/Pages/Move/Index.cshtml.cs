@@ -13,6 +13,7 @@ namespace FabolousUI.Pages.Move
         public int MyNewParkingSpot { get; set; }
         public Car UpdatedCar { get; set; }
         public Motorcycle UpdatedMc { get; set; }
+        public Bicycle UpdatedBicycle { get; set; }
         public object Holder { get; set; }
         public UpdateVehicleModel(FabolousDbContext context)
         {
@@ -25,6 +26,7 @@ namespace FabolousUI.Pages.Move
             Holder = JsonConvert.DeserializeObject<Car>(currentObject);
             UpdatedCar = JsonConvert.DeserializeObject<Car>(currentObject);
             UpdatedMc = JsonConvert.DeserializeObject<Motorcycle>(currentObject);
+            UpdatedBicycle = JsonConvert.DeserializeObject<Bicycle>(currentObject);
             if (UpdatedCar.Size == 4)
             {
                 UpdatedCar = await _context.cars.FindAsync(UpdatedCar.Id);
@@ -35,6 +37,12 @@ namespace FabolousUI.Pages.Move
             {
                 UpdatedMc = await _context.motorcycles.FindAsync(UpdatedMc.Id);
                 UpdatedMc.Parkingspot = MyNewParkingSpot;
+                await _context.SaveChangesAsync();
+            }
+            else if (UpdatedCar.Size == 1)
+            {
+                UpdatedBicycle = await _context.bicycles.FindAsync(UpdatedBicycle.Id);
+                UpdatedBicycle.Parkingspot = MyNewParkingSpot;
                 await _context.SaveChangesAsync();
             }
         }

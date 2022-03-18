@@ -11,7 +11,7 @@ namespace FabolousUI.Pages.Park
     [BindProperties]
     public class IndexModel : PageModel
     {
-        private readonly FabolousDbContext _context;
+        
         private readonly IUnitOfWork _contextUnitOfWork;
         public IList<Parkingspot> Cars { get; set; }
 

@@ -1,0 +1,34 @@
+﻿@page
+
+@model FabolousUI.Pages.Park.CreateBicycleModel
+
+<form method="post">
+    <div class="border p-3 mt-4 col-8">
+        <input asp-for="@Model.MyBicycle.Size" type="hidden"/>
+        <input type="hidden" name="Id" asp-for="@Model.Id" />
+        <input type="hidden" asp-for="@Model.MyBicycle.Parkingspot"  value="@Model.MyBicycle.Id" />
+        <input type="hidden" asp-for="@Model.MyBicycle.StartTime" value="@DateTime.Now" />
+   
+        <div class="row pb-2">
+            <h2 class="text-primary pl-3">Create Bicycle</h2>
+            <hr />
+        </div>
+        <div class="container col-8">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="mb-3">
+                <label asp-for="@Model.MyBicycle.Registration"></label>
+                <input asp-for="@Model.MyBicycle.Registration" type="text" name="registration" class="form-control" />
+                <span asp-validation-for=@Model.MyBicycle.Registration class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:150px;">Create</button>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial"/>
+    }
+}
+@{
+}

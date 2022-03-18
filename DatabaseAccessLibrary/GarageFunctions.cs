@@ -94,6 +94,22 @@ namespace DatabaseAccessLibrary
                     }
                 }
             }
+            foreach (var spot in parkingGarage.spots)
+            {
+                if (spot.Size > spot.CurrentSize)
+                {
+                    var number = spot.Id;
+                    var selectedItem = _contextUnitOfWork.Bicycle.GetAll(bike => bike.Parkingspot == number);
+                    foreach (var item in selectedItem)
+                    {
+                        if (item != null)
+                        {
+                            spot.ParkedVehicles.Add(item);
+                            spot.CurrentSize += 1;
+                        }
+                    }
+                }
+            }
             return parkingGarage;
         }
         public int GetHighestParkingSpot()

@@ -54,7 +54,7 @@
    
     if(value.CurrentSize == 0)
     {
-    <div class="col-lg-2 col-md-4 col-sm-6 pb-3">
+    <div class="col-1 pb-1">
         <div class="gridBox" data-id="">
             <div class="logo">
                     <a asp-page="Edit" asp-route-id="@value.Id" class="btn btn-info">@value.Id </a> 
@@ -65,7 +65,7 @@
     
     else if(value.CurrentSize > 0 && value.CurrentSize < value.Size )
     {
-        <div class="col-lg-2 col-md-4 col-sm-6 pb-3">
+        <div class="col-1 pb-1">
         <div class="gridBox" data-id="">
             <div class="logo">
                     <a asp-page="Edit" asp-route-id="@value.Id" class="btn btn-primary">@value.Id </a> 
@@ -76,7 +76,7 @@
 
     else if(value.CurrentSize == value.Size)
     {
-        <div class="col-lg-2 col-md-4 col-sm-6 pb-3">
+        <div class="col-1 pb-1">
         <div class="gridBox" data-id="">
             <div class="logo">
                     <a asp-page="Edit" asp-route-id="@value.Id" class="btn btn-danger">@value.Id </a> 

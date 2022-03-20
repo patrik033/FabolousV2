@@ -1,0 +1,48 @@
+﻿@page
+@using Newtonsoft.Json
+@model FabolousUIV2.Pages.Move.MoveBusModel
+@Html.HiddenFor(x => x.MyBus.Registration)
+<div class="col-md-12 text-center">
+@{
+        if(@Model.Options.Count() == 0)
+        {
+            string moveto = "No Spots To Move To!";
+            <p class="text-center">@moveto</p>
+        }
+        else if(@Model.Options.Count() > 0)
+        {
+            <form method="post">
+
+                <select asp-for="SelectedParkingChunk" asp-items="@Model.Options">
+                    <option>Select Spot</option>
+        
+        
+                </select>
+    
+            <div>
+            <br />
+            <br />
+            <br />
+                <td><input type="hidden"   asp-for="MyBus.Registration"/></td>
+                    <button type="submit" value="Submit" class="btn btn-outline-success btn-m" asp-page-handler="Submit" >Confirm Move</button>
+                </div>
+
+            </form>
+            <br />
+            <br />
+            <br />
+            <iframe width="560" 
+                    height="315" 
+                    src="https://www.youtube.com/embed/Aul35gjdFWM?&autoplay=1" 
+                    title="YouTube video player" frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen></iframe>
+        }
+    }
+
+
+</div>
+    
+
+
+

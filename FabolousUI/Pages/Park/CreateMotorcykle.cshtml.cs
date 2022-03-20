@@ -14,7 +14,7 @@ namespace FabolousUI.Pages.Park
         public Motorcycle MyMc { get; set; } = new Motorcycle();
         public int Id { get; set; }
 
-        public CreateMotorcykleModel( IUnitOfWork contextUnitOfWork)
+        public CreateMotorcykleModel(IUnitOfWork contextUnitOfWork)
         {
             _contextUnitOfWork = contextUnitOfWork;
         }
@@ -27,6 +27,7 @@ namespace FabolousUI.Pages.Park
             if (ModelState.IsValid)
             {
                 //kollar efter dubletter
+                MyMc.Registration = MyMc.Registration.ToUpper();
                 var fromCar = _contextUnitOfWork.Car.GetFirstOrDefault(x => x.Registration == MyMc.Registration);
                 var fromMc = _contextUnitOfWork.Motorcycle.GetFirstOrDefault(x => x.Registration == MyMc.Registration);
                 var fromNewBicycle = _contextUnitOfWork.Bicycle.GetFirstOrDefault(x => x.Registration == MyMc.Registration);
@@ -34,15 +35,14 @@ namespace FabolousUI.Pages.Park
 
                 if (fromCar == null && fromMc == null && fromNewBicycle == null && fromBus == null)
                 {
-                    MyMc.Registration = MyMc.Registration.ToUpper();
-                     _contextUnitOfWork.Motorcycle.Add(MyMc);
+                    _contextUnitOfWork.Motorcycle.Add(MyMc);
                     _contextUnitOfWork.Save();
                     TempData["Success"] = "Motorcycle created successfully";
                     return RedirectToPage("Index");
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty,"The registration number already exists, please enter a different one");
+                    ModelState.AddModelError(string.Empty, "The registration number already exists, please enter a different one");
                 }
             }
             return Page();

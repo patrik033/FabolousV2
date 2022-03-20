@@ -22,32 +22,30 @@ namespace FabolousUI.Pages.Park
             _contextUnitOfWork = contextUnitOfWork;
         }
 
-        public void OnGet(string currentSpots, string registration)
+        public void OnGet(string currentSpots)
         {
             IncomingSpots = currentSpots;
-            Registration = registration;
         }
         public async Task<IActionResult> OnPost(string currentSpots)
         {
-            var registration11 = Request.Form["registration"];
+            Registration = Request.Form["registration"].ToString().ToUpper();
             Spots = currentSpots.Split(',').ToList();
             Spots.RemoveAt(4);
 
             if (ModelState.IsValid)
             {
-                var fromCar = _contextUnitOfWork.Car.GetFirstOrDefault(x => x.Registration == MyBus.Registration);
-                var fromMc = _contextUnitOfWork.Motorcycle.GetFirstOrDefault(x => x.Registration == MyBus.Registration);
-                var fromBicycle = _contextUnitOfWork.Bicycle.GetFirstOrDefault(x => x.Registration == MyBus.Registration);
-                var fromBus = _contextUnitOfWork.Bus.GetFirstOrDefault(x => x.Registration == MyBus.Registration);
+                var fromCar = _contextUnitOfWork.Car.GetFirstOrDefault(x => x.Registration == Registration);
+                var fromMc = _contextUnitOfWork.Motorcycle.GetFirstOrDefault(x => x.Registration == Registration);
+                var fromBicycle = _contextUnitOfWork.Bicycle.GetFirstOrDefault(x => x.Registration == Registration);
+                var fromBus = _contextUnitOfWork.Bus.GetFirstOrDefault(x => x.Registration == Registration);
                 if (fromCar == null && fromMc == null && fromBicycle == null && fromBus == null)
                 {
-
-
                     foreach (var item in Spots)
                     {
                         MyBus = new Bus();
-                        MyBus.Registration = registration11;
+                        MyBus.Registration = Registration;
                         MyBus.Parkingspot = int.Parse(item) + 1;
+
                         _contextUnitOfWork.Bus.Add(MyBus);
                         _contextUnitOfWork.Save();
                     }
@@ -61,7 +59,6 @@ namespace FabolousUI.Pages.Park
 
             }
             return Page();
-
         }
     }
 }

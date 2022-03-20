@@ -18,6 +18,7 @@ namespace BussinessLogicLibrary
         //[\d\p{L}-]+
         [RegularExpression(@"[\d\w\s-]+",ErrorMessage = "Please use only letter, numbers, dash or space")]
         [StringLength(maximumLength: 8)]
+
         public override string Registration { get; set; }
         public override DateTime StartTime { get; set; } = DateTime.Now;
         public override int Parkingspot { get; set; }

@@ -32,6 +32,7 @@ namespace FabolousUI.Pages.Park
                 //kollar efter dubletter
                 //TODO lägg till detta för alla typer
 
+                MyBicycle.Registration = registration.ToString().ToUpper();
                 var fromNewCar = _contextUnitOfWork.Car.GetFirstOrDefault(x => x.Registration == MyBicycle.Registration);
                 var fromNewMc = _contextUnitOfWork.Motorcycle.GetFirstOrDefault(x => x.Registration == MyBicycle.Registration);
                 var fromNewBicycle = _contextUnitOfWork.Bicycle.GetFirstOrDefault(x => x.Registration == MyBicycle.Registration);
@@ -40,7 +41,6 @@ namespace FabolousUI.Pages.Park
                 if (fromNewCar == null && fromNewMc == null && fromNewBicycle == null && fromNewBus == null)
                 {
                     MyBicycle.Parkingspot = int.Parse(id);
-                    MyBicycle.Registration = registration;
                     _contextUnitOfWork.Bicycle.Add(MyBicycle);
                     _contextUnitOfWork.Save();
                     TempData["Success"] = "Bicycle created successfully";

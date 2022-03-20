@@ -14,10 +14,8 @@ namespace FabolousUI
         {
 
             var builder = WebApplication.CreateBuilder(args);
-
             // Add services to the container.
             builder.Services.AddRazorPages();
-            //builder.Services.AddSingleton<GarageFunctions>();
             builder.Services.AddDbContext<FabolousDbContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -25,7 +23,6 @@ namespace FabolousUI
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             var app = builder.Build();
-
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())

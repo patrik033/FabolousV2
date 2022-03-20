@@ -1,4 +1,5 @@
 using BussinessLogicLibrary;
+using BussinessLogicLibrary.Models;
 using DatabaseAccessLibrary;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;

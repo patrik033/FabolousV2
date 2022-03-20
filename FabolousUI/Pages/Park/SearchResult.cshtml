@@ -1,5 +1,6 @@
 ﻿@page
 @using BussinessLogicLibrary
+@using BussinessLogicLibrary.Models
 @using Newtonsoft.Json
 @model FabolousUI.Pages.Park.SearchResult
 
@@ -68,6 +69,42 @@
                             </a>
 
                             Dictionary<string, string> dv = new Dictionary<string, string> { { "Motorcycle", JsonConvert.SerializeObject(line) } };
+
+                            <a asp-page="ReroutIndex" asp-all-route-data="dv" class="btn btn-secondary mx-2">
+                                Move
+                                <i class="bi bi-minecart-loaded"></i>
+                            </a>
+                        }
+                        @if (line.GetType() == typeof(Bicycle))
+                        {
+                            <a asp-page="../EditTypes/EditBicycle" asp-route-id="@line.Id" class="btn btn-primary mx-2">
+                                Edit
+                                <i class="bi-pencil-square"></i>
+                            </a>
+                            <a asp-page="../Checkout/CheckoutBicycle" asp-route-id="@line.Id" class="btn btn-danger mx-2">
+                                Delete
+                                <i class="bi-trash-fill"></i>
+                            </a>
+
+                            Dictionary<string, string> dv = new Dictionary<string, string> { { "Bicycle", JsonConvert.SerializeObject(line) } };
+
+                            <a asp-page="ReroutIndex" asp-all-route-data="dv" class="btn btn-secondary mx-2">
+                                Move
+                                <i class="bi bi-minecart-loaded"></i>
+                            </a>
+                        }
+                        @if (line.GetType() == typeof(Bus))
+                        {
+                            <a asp-page="../EditTypes/EditBus" asp-route-id="@line.Id" class="btn btn-primary mx-2">
+                                Edit
+                                <i class="bi-pencil-square"></i>
+                            </a>
+                            <a asp-page="../Checkout/CheckoutBus" asp-route-id="@line.Id" class="btn btn-danger mx-2">
+                                Delete
+                                <i class="bi-trash-fill"></i>
+                            </a>
+
+                            Dictionary<string, string> dv = new Dictionary<string, string> { { "Bus", JsonConvert.SerializeObject(line) } };
 
                             <a asp-page="ReroutIndex" asp-all-route-data="dv" class="btn btn-secondary mx-2">
                                 Move

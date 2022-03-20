@@ -10,7 +10,7 @@ namespace FabolousUI.Pages.Park
     [BindProperties]
     public class MapModel : PageModel
     {
-        private readonly FabolousDbContext _context;
+      
         public IList<Parkingspot> Cars { get; set; }
         private readonly IUnitOfWork _contextUnitOfWork;
 

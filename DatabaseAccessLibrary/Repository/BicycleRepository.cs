@@ -1,4 +1,5 @@
-﻿using BussinessLogicLibrary.Models;
+﻿using BussinessLogicLibrary;
+using BussinessLogicLibrary.Models;
 using DatabaseAccessLibrary.Repository.IRepository;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,8 @@ namespace DatabaseAccessLibrary.Repository
             _context.SaveChanges();
         }
 
+
+
         public void Update(Bicycle bicycle)
         {
             var myObject = _context.bicycles.FirstOrDefault(x => x.Id == bicycle.Id);
@@ -31,5 +34,7 @@ namespace DatabaseAccessLibrary.Repository
                 myObject.Registration = bicycle.Registration;
             }
         }
+
+        
     }
 }

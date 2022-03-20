@@ -23,24 +23,34 @@
                     <a asp-page="CreateCar" asp-route-id="@line.Id" class="btn btn-outline-info ">
                         <i class="bi bi-emoji-heart-eyes"> &nbsp; Create New Car</i>
                     </a>
-                    <a asp-page="CreateMotorcykle" asp-route-id="@line.Id" class="btn btn-outline-info ms-3">
+                    @*<a asp-page="CreateMotorcykle" asp-route-id="@line.Id" class="btn btn-outline-info ms-3">
                         <i class="bi bi-emoji-smile"></i> &nbsp; Create New Motorcycle
-                    </a>
+                    </a>*@
                 }
-                if (line.CurrentSize == 2)
+                if (line.CurrentSize <= 2)
                 {
                     <a asp-page="CreateMotorcykle" asp-route-id="@line.Id" class="btn btn-outline-info ms-3">
                         <i class="bi bi-emoji-smile"></i> &nbsp; Create New Motorcycle
                     </a>
                 }
+                
                 Dictionary<string, string> newSpotsForBuses = new Dictionary<string, string> { { "currentSpots", @Model.Spots } };
-                if (@Model.Bus == true)
+                if (@Model.Bus == true && line.Id <= 50)
                 {
-
-                    <a asp-page="CreateBus" asp-all-route-data="newSpotsForBuses" asp-route-id="@line.Id" class="btn btn-outline-info ms-3">
+                    <br />
+                    <br />
+                    <a asp-page="CreateBus" asp-all-route-data="newSpotsForBuses" asp-route-id="@line.Id" class="btn btn-outline-info ms-0">
                         <i class="bi bi-emoji-smile"></i> &nbsp; Create New Bus
                     </a>
                 }
+                if (line.CurrentSize <= 3)
+                {
+                    
+                    <a asp-page="CreateBicycle" asp-route-id="@line.Id" class="btn btn-outline-info ms-0">
+                        <i class="bi bi-emoji-smile"></i> &nbsp; Create New Bicycle
+                    </a>
+                }
+               
             }
         </div>
 
@@ -94,7 +104,7 @@
                             @if (secondLine.GetType() == typeof(Bus))
                             {
                                 
-                                <a asp-page="../EditTypes/EditCar" asp-route-id="@secondLine.Id" class="btn btn-primary mx-2">
+                                <a asp-page="../EditTypes/EditBus" asp-route-id="@secondLine.Id" class="btn btn-primary mx-2">
                                     Edit
                                     <i class="bi-pencil-square"></i>
                                 </a>
@@ -120,6 +130,23 @@
                                 </a>
 
                                 Dictionary<string, string> dv = new Dictionary<string, string> { { "Motorcycle", JsonConvert.SerializeObject(secondLine) } };
+                                <a asp-page="ReroutIndex" asp-all-route-data="dv" class="btn btn-secondary mx-2">
+                                    Move
+                                    <i class="bi bi-minecart-loaded"></i>
+                                </a>
+                            }
+                            @if (secondLine.GetType() == typeof(Bicycle))
+                            {
+                                <a asp-page="../EditTypes/EditBicycle" asp-route-id="@secondLine.Id" class="btn btn-primary mx-2">
+                                    Edit
+                                    <i class="bi-pencil-square"></i>
+                                </a>
+                                <a asp-page="../Checkout/CheckoutBicycle" asp-route-id="@secondLine.Id" class="btn btn-danger mx-2">
+                                    Delete
+                                    <i class="bi-trash-fill"></i>
+                                </a>
+
+                                Dictionary<string, string> dv = new Dictionary<string, string> { { "Bicycle", JsonConvert.SerializeObject(secondLine) } };
                                 <a asp-page="ReroutIndex" asp-all-route-data="dv" class="btn btn-secondary mx-2">
                                     Move
                                     <i class="bi bi-minecart-loaded"></i>

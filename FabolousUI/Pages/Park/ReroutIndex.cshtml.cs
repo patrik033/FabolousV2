@@ -13,7 +13,6 @@ namespace FabolousUI.Pages.Park
     {
 
         private readonly IUnitOfWork _contextUnitOfWork;
-        private readonly FabolousDbContext _context;
         [BindProperty(SupportsGet = true)]
         public dynamic MyVehicle { get; set; }
 
@@ -51,6 +50,13 @@ namespace FabolousUI.Pages.Park
                 if (passedObject.Where(x => x.Key == "Car").FirstOrDefault().Key.Any() != null)
                 {
                     MyVehicle = JsonConvert.DeserializeObject<Car>(passedObject.Where(x => x.Key == "Car").FirstOrDefault().Value);
+                }
+            }
+            else if (passedObject.ContainsKey("Bicycle"))
+            {
+                if (passedObject.Where(x => x.Key == "Bicycle").FirstOrDefault().Key.Any() != null)
+                {
+                    MyVehicle = JsonConvert.DeserializeObject<Bicycle>(passedObject.Where(x => x.Key == "Bicycle").FirstOrDefault().Value);
                 }
             }
             else

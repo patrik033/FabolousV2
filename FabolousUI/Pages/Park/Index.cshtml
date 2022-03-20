@@ -11,6 +11,7 @@
     <thead>
         <tr>
             <th>Empty</th>
+            <th>One Bike</th>
             <th>Half Full</th>
             <th>Full</th>
         </tr>
@@ -21,11 +22,15 @@
                 <a asp-page="#"  class="btn btn-info"></a> 
             </td>
             <td>
+                 <a asp-page="#"  class="btn btn-warning"></a> 
+            </td>
+            <td>
                   <a asp-page="#"  class="btn btn-primary"></a> 
             </td>
             <td>
                  <a asp-page="#"  class="btn btn-danger"></a> 
             </td>
+            
         </tr>
     </tbody>
 </table>
@@ -34,7 +39,7 @@
 <br />
 
 @{
-    var numberOfColsNeeded = 5;
+    var numberOfColsNeeded = 30;
     var totalCounter = Model.Garage.spots.Count();
     var itemCounter = 1;
 }
@@ -62,12 +67,22 @@
         </div>
     }
     
-    else if(value.CurrentSize > 0 && value.CurrentSize < value.Size )
+    else if(value.CurrentSize > 1 && value.CurrentSize < value.Size )
     {
         <div class="col-lg-2 col-md-4 col-sm-6 pb-3">
         <div class="gridBox" data-id="">
             <div class="logo">
                     <a asp-page="Edit" asp-route-id="@value.Id" class="btn btn-primary">@value.Id </a> 
+            </div>
+        </div>
+        </div>
+    }
+    else if(value.CurrentSize > 0 && value.CurrentSize < value.Size )
+    {
+        <div class="col-lg-2 col-md-4 col-sm-6 pb-3">
+        <div class="gridBox" data-id="">
+            <div class="logo">
+                    <a asp-page="Edit" asp-route-id="@value.Id" class="btn btn-warning">@value.Id </a> 
             </div>
         </div>
         </div>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DatabaseAccessLibrary.Repository.IRepository
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork 
     {
         //TODO uppdatera för att lägga till nya typer
         ICarRepository Car { get; }

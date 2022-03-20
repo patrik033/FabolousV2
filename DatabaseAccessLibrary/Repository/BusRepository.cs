@@ -23,14 +23,13 @@ namespace DatabaseAccessLibrary.Repository
 
         public void Update(Bus bus)
         {
-            var myObject = _context.busses.Where(x => x.Id == bus.Id).ToList();
-            if (myObject != null)
-            {
-                foreach(var item in myObject)
+            
+                var myObject = _context.busses.FirstOrDefault(x => x.Id == bus.Id);
+                if (myObject != null)
                 {
-                    item.Registration = bus.Registration; 
+                    myObject.Registration = bus.Registration;
                 }
-            }
+            
         }
     }
 }

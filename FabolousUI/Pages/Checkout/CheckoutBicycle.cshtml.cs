@@ -4,13 +4,12 @@ using DatabaseAccessLibrary.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace FabolousUIV2.Pages.Checkout
+namespace FabolousUI.Pages.Checkout
 {
-    [BindProperties]
-    public class CheckoutBusModel : PageModel
+    public class CheckoutBicycleModel : PageModel
     {
         private readonly IUnitOfWork _contextUnitOfWork;
-        public Bus MyBus { get; set; }
+        public Bicycle MyBicycle { get; set; } = new Bicycle();
 
         public string FormatedTime { get; set; }
         public TimeSpan ParkedTime { get; set; }
@@ -20,44 +19,42 @@ namespace FabolousUIV2.Pages.Checkout
         public decimal TotalCost { get; set; }
         public string FormatedCost { get; set; }
         public string TextString { get; set; }
-        public string Registration { get; set; }
-        public CheckoutBusModel(IUnitOfWork contextUnitOfWork)
+
+        public CheckoutBicycleModel(IUnitOfWork contextUnitOfWork)
         {
-            MyBus = new Bus();
             _contextUnitOfWork = contextUnitOfWork;
             ParkedTime = new TimeSpan();
             CostCalculator = new CostCalculation();
             Editor = new JsonEditor();
         }
+
         public void OnGet(int id)
         {
-
-            MyBus = _contextUnitOfWork.Bus.GetFirstOrDefault(x => x.Id == id);
-            Cost = Editor.ReadProperty("Bus", "Cost");
-            ParkedTime = CostCalculator.ParkedTime(MyBus.StartTime);
-            FormatedTime = CostCalculator.ParkedTimeToScreen(MyBus.StartTime);
-            TotalCost = CostCalculator.CalculateCost(MyBus.StartTime, int.Parse(Cost));
+            MyBicycle = _contextUnitOfWork.Bicycle.GetFirstOrDefault(x => x.Id == id);
+            Cost = Editor.ReadProperty("Bicycle", "Cost");
+            ParkedTime = CostCalculator.ParkedTime(MyBicycle.StartTime);
+            FormatedTime = CostCalculator.ParkedTimeToScreen(MyBicycle.StartTime);
+            TotalCost = CostCalculator.CalculateCost(MyBicycle.StartTime, int.Parse(Cost));
             FormatedCost = TotalCost.ToString("C2");
             TextString = $"\nParkerad tid:   {FormatedTime} \n" +
                 $"Total kostnad:   {FormatedCost}";
         }
-        public async Task<IActionResult> OnPostAsync()
+
+        public async Task<IActionResult> OnPostAsync(int id)
         {
-
-
-            var category = _contextUnitOfWork.Bus.GetAll(x => x.Registration == MyBus.Registration);
+            var category = _contextUnitOfWork.Bicycle.GetFirstOrDefault(x => x.Id == id);
             if (category != null)
             {
-                _contextUnitOfWork.Bus.RemoveRange(category);
+                _contextUnitOfWork.Bicycle.Remove(category);
                 _contextUnitOfWork.Save();
-                TempData["Success"] = "Bus deleted Successfully";
+                TempData["Success"] = "Bicycle deleted successfully";
                 return RedirectToPage("../Park/Index");
             }
             else
             {
                 TempData["error"] = "Vehicle not found";
+                return Page();
             }
-            return Page();
         }
     }
 }

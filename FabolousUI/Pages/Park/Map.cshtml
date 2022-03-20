@@ -35,7 +35,7 @@
 <br />
 
 @{
-    var numberOfColsNeeded = 5;
+    var numberOfColsNeeded = 60;
     var totalCounter = Model.Garage.spots.Count();
     var itemCounter = 1;
 }
@@ -54,9 +54,9 @@
    
     if(value.CurrentSize == 0)
     {
-    <div class="col-lg-2 col-md-4 col-sm-6 pb-3">
+    <div class="col-1 pb-1 ">
         <div class="gridBox" data-id="">
-            <div class="logo">
+            <div class="logo ">
                     <a asp-page="Edit" asp-route-id="@value.Id" class="btn btn-info">@value.Id </a> 
             </div>
         </div>
@@ -65,9 +65,9 @@
     
     else if(value.CurrentSize > 0 && value.CurrentSize < value.Size )
     {
-        <div class="col-lg-2 col-md-4 col-sm-6 pb-3">
+        <div class="col-1 pb-1">
         <div class="gridBox" data-id="">
-            <div class="logo">
+            <div class="logo g-0">
                     <a asp-page="Edit" asp-route-id="@value.Id" class="btn btn-primary">@value.Id </a> 
             </div>
         </div>
@@ -76,9 +76,9 @@
 
     else if(value.CurrentSize == value.Size)
     {
-        <div class="col-lg-2 col-md-4 col-sm-6 pb-3">
+        <div class="col-1 pb-1">
         <div class="gridBox" data-id="">
-            <div class="logo">
+            <div class="logo ">
                     <a asp-page="Edit" asp-route-id="@value.Id" class="btn btn-danger">@value.Id </a> 
             </div>
         </div>

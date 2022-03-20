@@ -25,10 +25,16 @@ namespace FabolousUI.Pages.EditTypes
         {
             if (ModelState.IsValid)
             {
-                var fromNewCar = _contextOfWork.Car.GetFirstOrDefault(x => x.Registration == MyCar.Registration);
-                var fromNewMc = _contextOfWork.Motorcycle.GetFirstOrDefault(x => x.Registration == MyCar.Registration);
-                
-                if (fromNewCar == null && fromNewMc == null)
+                MyCar.Registration = MyCar.Registration.ToUpper();
+
+                var fromCar = _contextOfWork.Car.GetFirstOrDefault(x => x.Registration == MyCar.Registration);
+                var fromMc = _contextOfWork.Motorcycle.GetFirstOrDefault(x => x.Registration == MyCar.Registration);
+                var fromBus = _contextOfWork.Bus.GetFirstOrDefault(x => x.Registration == MyCar.Registration);
+                var fromBicycle = _contextOfWork.Bicycle.GetFirstOrDefault(x => x.Registration == MyCar.Registration);
+
+
+
+                if (fromCar == null && fromMc == null && fromBicycle == null && fromBus == null)
                 {
                     MyCar.Registration = MyCar.Registration.ToUpper();
                     _contextOfWork.Car.Update(MyCar);

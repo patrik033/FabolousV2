@@ -25,12 +25,15 @@ namespace FabolousUIV2.Pages.EditTypes
             if (ModelState.IsValid)
             {
 
+                MyBicycle.Registration = MyBicycle.Registration.ToUpper();
+
                 var fromCar = _contextIUnitOfWork.Car.GetFirstOrDefault(x => x.Registration == MyBicycle.Registration);
                 var fromMc = _contextIUnitOfWork.Motorcycle.GetFirstOrDefault(x => x.Registration == MyBicycle.Registration);
+                var fromBus = _contextIUnitOfWork.Bus.GetFirstOrDefault(x => x.Registration == MyBicycle.Registration);
+                var fromBicycle = _contextIUnitOfWork.Bicycle.GetFirstOrDefault(x => x.Registration == MyBicycle.Registration);
 
-                if (fromCar == null && fromMc == null)
+                if (fromCar == null && fromMc == null && fromBus == null && fromBicycle == null)
                 {
-                    MyBicycle.Registration = MyBicycle.Registration.ToUpper();
                     _contextIUnitOfWork.Bicycle.Update(MyBicycle);
                     _contextIUnitOfWork.Save();
 

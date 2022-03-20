@@ -1,0 +1,35 @@
+﻿@page
+@model FabolousUIV2.Pages.EditTypes.EditBicycleModel
+
+
+
+<form method="post">
+
+    <input type="hidden" asp-for="@Model.MyBicycle.Id" />
+    <input type="hidden" asp-for="@Model.MyBicycle.Parkingspot" value="@Model.MyBicycle.Parkingspot" />
+    <input type="hidden" asp-for="@Model.MyBicycle.StartTime" value="@Model.MyBicycle.StartTime"/>
+
+    <div class="border p-3 mt-4 col-8 container-fluid">
+        <div class="row pb-2">
+            <h2 class="text-primary pl-3">Edit Bicycle</h2>
+            <hr />
+        </div>
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="MyBicycle.Registration"></label>
+            <input asp-for="MyBicycle.Registration" class="form-control" />
+            <span asp-validation-for=MyBicycle.Registration class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:150px;">Edit</button>
+        <a class="btn btn-primary ms-2" asp-page="../Park/Index">Back to list</a>
+    </div>
+
+</form>
+
+@section Scripts{
+    @{
+    <partial name="_ValidationScriptsPartial" />
+    }
+}

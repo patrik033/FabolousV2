@@ -35,8 +35,9 @@ namespace FabolousUI.Pages.Park
                 var fromNewCar = _contextUnitOfWork.Car.GetFirstOrDefault(x => x.Registration == MyBicycle.Registration);
                 var fromNewMc = _contextUnitOfWork.Motorcycle.GetFirstOrDefault(x => x.Registration == MyBicycle.Registration);
                 var fromNewBicycle = _contextUnitOfWork.Bicycle.GetFirstOrDefault(x => x.Registration == MyBicycle.Registration);
+                var fromNewBus = _contextUnitOfWork.Bus.GetFirstOrDefault(x => x.Registration == MyBicycle.Registration);
 
-                if (fromNewCar == null && fromNewMc == null)
+                if (fromNewCar == null && fromNewMc == null && fromNewBicycle == null && fromNewBus == null)
                 {
                     MyBicycle.Parkingspot = int.Parse(id);
                     MyBicycle.Registration = registration;

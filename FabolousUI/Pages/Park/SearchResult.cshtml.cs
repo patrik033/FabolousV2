@@ -49,6 +49,10 @@ namespace FabolousUI.Pages.Park
             {
                 vehicles.Add((Vehicle)vehicle);
             }
+            foreach (var vehicle in _contextUnitOfWork.Bicycle.GetAll(x => x.Registration.Contains(Search)))
+            {
+                vehicles.Add((Vehicle)vehicle);
+            }
 
             return vehicles;
         }
